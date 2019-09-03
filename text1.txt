@@ -1,0 +1,24 @@
+from django.db import models
+from dateutil.relativedelta import relativedelta
+from datetime import datetime
+from django.conf import settings
+from django.urls import reverse
+
+# Create your models here.
+class XxgenAgenMaster(models.Model):
+    agen_id = models.CharField(primary_key=True, max_length=120)
+    agent_name = models.CharField(max_length=200, blank=True, null=True)
+    agent_dob = models.DateField(blank=True, null=True)
+    agent_age = models.IntegerField(blank=True, null=True)
+    agent_qualification = models.CharField(max_length=50, blank=True, null=True)
+    agent_join_date = models.DateField(blank=True, null=True, auto_now_add=True)
+    agent_start_date = models.DateField(blank=True, null=True)
+    agent_end_date = models.DateField(blank=True, null=True)
+    agent_status = models.CharField(max_length=20, blank=True, null=True)
+    created_by = models.CharField(max_length=200, blank=True, null=True).hidden
+    created_date = models.DateField(blank=True, null=True, auto_now_add=True)
+    last_updated_by = models.CharField(max_length=200, blank=True, null=True).hidden
+    last_update_date = models.DateField(blank=True, null=True, auto_now_add=True)
+
+    def __str__(self):
+        return self.agen_id
